@@ -1,0 +1,526 @@
+<title>Othmane Aja Cloud Portfolio</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,600;112,800;125,800&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a single reading column that widens for the hero plan output, the service grid and the architecture diagram, like a well-kept infrastructure README. */
+:root{
+  --bg:#F3F5F8; --surface:#FFFFFF; --ink:#101A2A; --muted:#566275; --line:#D9DEE6;
+  --accent:#1F4FD1; --accent-soft:#E3EAFB; --signal:#B86A00; --ok:#1C7A4A;
+  --code-bg:#0F1828; --code-fg:#D7DEEA; --code-dim:#7D8AA0; --code-add:#6FD39B;
+  --display:"Archivo",ui-sans-serif,system-ui,sans-serif;
+  --body:"IBM Plex Sans",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0C121C; --surface:#131B28; --ink:#E6EBF3; --muted:#97A3B6; --line:#243042;
+  --accent:#7EA2FF; --accent-soft:#1A2640; --signal:#E9A23B; --ok:#5CC48C;
+  --code-bg:#070C14; --code-fg:#D7DEEA; --code-dim:#6D7A90; --code-add:#6FD39B; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0C121C; --surface:#131B28; --ink:#E6EBF3; --muted:#97A3B6; --line:#243042;
+  --accent:#7EA2FF; --accent-soft:#1A2640; --signal:#E9A23B; --ok:#5CC48C;
+  --code-bg:#070C14; --code-fg:#D7DEEA; --code-dim:#6D7A90; --code-add:#6FD39B; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:var(--accent)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+h1,h2,h3{font-family:var(--display);font-stretch:112%;line-height:1.1;text-wrap:balance;margin:0}
+h2{font-size:clamp(1.6rem,3.2vw,2.3rem);font-weight:800}
+h3{font-size:1.15rem;font-weight:600}
+p{margin:0}
+.label{font-family:var(--mono);font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.chip{font-family:var(--mono);font-size:.75rem;padding:.2rem .55rem;border:1px solid var(--line);border-radius:4px;color:var(--muted);white-space:nowrap}
+.chips{display:flex;flex-wrap:wrap;gap:.4rem}
+
+/* nav */
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding-block:.75rem}
+.brand{font-family:var(--display);font-weight:800;font-stretch:125%;letter-spacing:.02em;text-decoration:none;color:var(--ink)}
+nav{display:flex;gap:1.25rem;flex-wrap:wrap}
+nav a{color:var(--muted);text-decoration:none;font-size:.9rem}
+nav a:hover{color:var(--ink)}
+@media (max-width:640px){nav a:not(.cta-link){display:none}}
+.cta-link{color:var(--accent)!important;font-weight:600}
+
+/* hero */
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:3rem;align-items:center;padding-block:4.5rem 3.5rem}
+@media (max-width:900px){.hero .wrap{grid-template-columns:1fr;gap:2.25rem;padding-block:3rem 2.5rem}}
+.status{display:inline-flex;align-items:center;gap:.5rem;font-size:.85rem;color:var(--ok);font-weight:500}
+.status::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 4px color-mix(in srgb,var(--ok) 20%,transparent)}
+.hero h1{font-size:clamp(2.4rem,6vw,4.1rem);font-weight:800;font-stretch:125%;margin-top:1rem;letter-spacing:-.01em}
+.hero h1 span{color:var(--accent)}
+.hero .lede{font-size:1.15rem;color:var(--muted);max-width:34rem;margin-top:1.25rem}
+.actions{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:2rem}
+.btn{display:inline-flex;align-items:center;gap:.5rem;font:600 .95rem var(--body);padding:.8rem 1.2rem;border-radius:6px;text-decoration:none;border:1px solid transparent;cursor:pointer}
+.btn.primary{background:var(--accent);color:var(--bg)}
+.btn.ghost{border-color:var(--line);color:var(--ink);background:var(--surface)}
+.btn:hover{filter:brightness(1.08)}
+
+.plan{background:var(--code-bg);color:var(--code-fg);border-radius:10px;font-family:var(--mono);font-size:.8rem;line-height:1.75;overflow:hidden;min-width:0;box-shadow:0 24px 50px -30px rgba(10,20,40,.55)}
+.plan .bar{display:flex;align-items:center;gap:.4rem;padding:.65rem .9rem;border-bottom:1px solid rgba(255,255,255,.07);color:var(--code-dim)}
+.plan .bar i{width:9px;height:9px;border-radius:50%;background:#2B3648;display:inline-block}
+.plan .bar span{margin-left:.5rem}
+.plan pre{margin:0;padding:1rem 1.1rem 1.2rem;overflow-x:auto;white-space:pre}
+.plan .d{color:var(--code-dim)} .plan .a{color:var(--code-add)} .plan .k{color:#9DB8FF} .plan .w{color:#F2B85B}
+.tabs{display:flex;gap:.25rem;margin-left:.6rem;flex-wrap:wrap}
+.tabs button{font:500 .75rem var(--mono);color:var(--code-dim);background:transparent;border:1px solid transparent;border-radius:4px;padding:.2rem .55rem;cursor:pointer}
+.tabs button[aria-selected="true"]{color:var(--code-fg);border-color:rgba(255,255,255,.14);background:rgba(255,255,255,.05)}
+
+/* pipeline */
+.pipeline{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;counter-reset:p}
+@media (max-width:900px){.pipeline{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:480px){.pipeline{grid-template-columns:1fr}}
+.pipeline li{background:var(--surface);padding:1.1rem 1.2rem;display:grid;gap:.35rem;align-content:start;counter-increment:p;min-width:0}
+.pipeline li::before{content:"stage " counter(p);font-family:var(--mono);font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:var(--accent)}
+.pipeline b{font-family:var(--mono);font-size:.92rem;font-weight:500}
+.pipeline span{color:var(--muted);font-size:.88rem}
+.pipeline li.gate::before{content:"stage " counter(p) " · gate";color:var(--signal)}
+.gitlab-points{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2rem}
+@media (max-width:860px){.gitlab-points{grid-template-columns:1fr}}
+.gitlab-points div{display:grid;gap:.4rem;border-top:2px solid var(--ink);padding-top:.9rem}
+.gitlab-points p{color:var(--muted);font-size:.93rem}
+
+/* proof strip */
+.proof{border-block:1px solid var(--line);background:var(--surface)}
+.proof .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;padding-block:1.6rem}
+@media (max-width:760px){.proof .wrap{grid-template-columns:repeat(2,1fr)}}
+.proof b{display:block;font-family:var(--display);font-stretch:112%;font-size:1.35rem;font-weight:800}
+.proof span{color:var(--muted);font-size:.88rem}
+
+section.block{padding-block:4.5rem}
+.head{display:grid;gap:.6rem;margin-bottom:2.25rem;max-width:44rem}
+.head p{color:var(--muted)}
+
+/* services */
+.services{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+@media (max-width:900px){.services{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.services{grid-template-columns:1fr}}
+.svc{background:var(--surface);padding:1.5rem;display:grid;gap:.7rem;align-content:start;min-width:0}
+.svc .label{color:var(--accent)}
+.svc p{color:var(--muted);font-size:.95rem}
+.svc ul{margin:0;padding-left:1.1rem;font-size:.9rem;display:grid;gap:.2rem}
+
+/* case studies */
+.cases{display:grid;gap:1.5rem}
+.case{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:clamp(1.25rem,3vw,2rem);display:grid;grid-template-columns:15rem 1fr;gap:2rem}
+@media (max-width:800px){.case{grid-template-columns:1fr;gap:1.1rem}}
+.case aside{display:grid;gap:.9rem;align-content:start}
+.case aside dl{margin:0;display:grid;gap:.7rem}
+.case aside dt{font-family:var(--mono);font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.case aside dd{margin:0;font-size:.92rem;font-weight:500}
+.case .body{display:grid;gap:1rem;min-width:0}
+.case .body p{color:var(--muted);max-width:62ch}
+.case ul{margin:0;padding-left:1.1rem;display:grid;gap:.35rem;max-width:66ch}
+.case.featured{border-color:color-mix(in srgb,var(--accent) 45%,var(--line))}
+.tag{justify-self:start;font-family:var(--mono);font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;background:var(--accent-soft);color:var(--accent);padding:.25rem .55rem;border-radius:4px}
+.diagram{grid-column:1/-1;border-top:1px dashed var(--line);padding-top:1.5rem;overflow-x:auto}
+.diagram svg{display:block;min-width:720px;width:100%;height:auto}
+.diagram figcaption{font-size:.85rem;color:var(--muted);margin-top:.6rem}
+
+/* process */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;counter-reset:s}
+@media (max-width:900px){.steps{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:520px){.steps{grid-template-columns:1fr}}
+.step{border-top:2px solid var(--ink);padding-top:1rem;display:grid;gap:.5rem;counter-increment:s}
+.step::before{content:"0" counter(s);font-family:var(--mono);font-size:.8rem;color:var(--accent)}
+.step p{color:var(--muted);font-size:.93rem}
+
+/* stack + creds */
+.two{display:grid;grid-template-columns:1.3fr 1fr;gap:3rem}
+@media (max-width:860px){.two{grid-template-columns:1fr;gap:2.5rem}}
+.stack{display:grid;gap:1.1rem}
+.stack div{display:grid;grid-template-columns:9.5rem 1fr;gap:1rem;align-items:start;padding-bottom:1.1rem;border-bottom:1px solid var(--line)}
+@media (max-width:520px){.stack div{grid-template-columns:1fr;gap:.5rem}}
+.timeline{display:grid;gap:0;margin:0;padding:0;list-style:none}
+.timeline li{display:grid;grid-template-columns:7.5rem 1fr;gap:1rem;padding-block:.85rem;border-bottom:1px solid var(--line)}
+.timeline time{font-family:var(--mono);font-size:.78rem;color:var(--muted);font-variant-numeric:tabular-nums;padding-top:.15rem}
+.timeline b{display:block}
+.timeline span{color:var(--muted);font-size:.9rem}
+.certs{display:grid;gap:.75rem;margin-top:2rem}
+.cert{display:flex;gap:.9rem;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:.8rem 1rem}
+.cert .badge{font-family:var(--display);font-stretch:125%;font-weight:800;font-size:.9rem;width:3.2rem;height:3.2rem;flex:none;display:grid;place-items:center;border-radius:50%;border:2px solid var(--accent);color:var(--accent)}
+.cert span{color:var(--muted);font-size:.85rem;display:block}
+
+/* contact */
+.contact{background:var(--code-bg);color:var(--code-fg)}
+.contact .wrap{padding-block:4.5rem;display:grid;grid-template-columns:1.2fr 1fr;gap:3rem;align-items:center}
+@media (max-width:860px){.contact .wrap{grid-template-columns:1fr;gap:2rem}}
+.contact h2{color:#fff}
+.contact p{color:#AEB9CB;margin-top:1rem;max-width:34rem}
+.contact .card{border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:1.4rem;display:grid;gap:1rem}
+.contact .row{display:grid;gap:.2rem}
+.contact .row .label{color:#7D8AA0}
+.contact .row div{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap}
+.contact .val{font-family:var(--mono);font-size:.95rem;user-select:all;word-break:break-all}
+.copy{font:500 .75rem var(--mono);background:transparent;color:#9DB8FF;border:1px solid rgba(157,184,255,.4);border-radius:4px;padding:.2rem .5rem;cursor:pointer}
+.placeholder{color:var(--signal);font-style:italic}
+footer{padding-block:1.5rem;color:var(--muted);font-size:.85rem}
+footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+@media (prefers-reduced-motion:no-preference){
+  .plan pre .ln{animation:in .5s ease both}
+  @keyframes in{from{opacity:.25;transform:translateX(-4px)}to{opacity:1;transform:none}}
+}
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top">OTHMANE AJA</a>
+    <nav>
+      <a href="#services">Services</a>
+      <a href="#pipeline">DevOps</a>
+      <a href="#work">Case studies</a>
+      <a href="#process">How I work</a>
+      <a href="#about">Experience</a>
+      <a class="cta-link" href="#contact">Hire me</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <span class="status">Available for remote projects · CET time zone</span>
+        <h1>DevOps &amp; Cloud Engineer for <span>GitLab CI/CD</span>, Kubernetes, Azure and AWS</h1>
+        <p class="lede">I build the pipelines and platforms that ship your software. GitLab CI/CD with security built in, production Kubernetes, Terraform, and migrations to Azure. CKA, CKS and GitLab certified, with 5+ years at EUROCONTROL, Orange Business, Oracle and Medicim. Working 100% remote.</p>
+        <div class="actions">
+          <a class="btn primary" href="#contact">Start a project</a>
+          <a class="btn ghost" href="#work">See case studies</a>
+        </div>
+      </div>
+      <figure class="plan" aria-label="Example GitLab pipeline and Terraform plan" style="margin:0">
+        <div class="bar"><i></i><i></i><i></i>
+          <div class="tabs" role="tablist">
+            <button role="tab" id="tab-ci" aria-selected="true" aria-controls="pane-ci" type="button">.gitlab-ci.yml</button>
+            <button role="tab" id="tab-tf" aria-selected="false" aria-controls="pane-tf" type="button">terraform plan</button>
+          </div>
+        </div>
+<pre id="pane-ci" role="tabpanel" aria-labelledby="tab-ci"><span class="ln"><span class="d">$</span> <span class="k">git push</span> origin main</span>
+<span class="ln"><span class="d">→ pipeline started · merge request pipeline</span></span>
+<span class="ln"> </span>
+<span class="ln"><span class="a">✓</span> build:image          <span class="d">docker build · push to registry</span></span>
+<span class="ln"><span class="a">✓</span> test:unit</span>
+<span class="ln"><span class="a">✓</span> quality:sonarqube    <span class="d">quality gate passed</span></span>
+<span class="ln"><span class="a">✓</span> scan:trivy           <span class="d">no critical CVEs</span></span>
+<span class="ln"><span class="a">✓</span> scan:report          <span class="d">sent to DefectDojo</span></span>
+<span class="ln"><span class="a">✓</span> infra:terraform      <span class="d">plan · apply</span></span>
+<span class="ln"><span class="a">✓</span> deploy:staging       <span class="d">helm upgrade --install</span></span>
+<span class="ln"><span class="w">▶</span> deploy:production    <span class="d">manual approval</span></span>
+<span class="ln"> </span>
+<span class="ln"><span class="d">Runner:</span> gitlab-runner on Kubernetes</span></pre>
+<pre id="pane-tf" role="tabpanel" aria-labelledby="tab-tf" hidden><span class="ln"><span class="d">$</span> <span class="k">terraform plan</span> -out=prod.tfplan</span>
+<span class="ln"> </span>
+<span class="ln"><span class="a">+</span> azurerm_virtual_network.hub</span>
+<span class="ln"><span class="a">+</span> azurerm_kubernetes_cluster.aks</span>
+<span class="ln"><span class="a">+</span> azurerm_container_registry.acr</span>
+<span class="ln"><span class="a">+</span> azurerm_key_vault.secrets</span>
+<span class="ln"><span class="a">+</span> azurerm_firewall.egress</span>
+<span class="ln"><span class="a">+</span> azurerm_application_gateway.ingress</span>
+<span class="ln"><span class="a">+</span> azurerm_monitor_action_group.oncall</span>
+<span class="ln"><span class="a">+</span> helm_release.keycloak</span>
+<span class="ln"><span class="a">+</span> helm_release.kube_prometheus_stack</span>
+<span class="ln"> </span>
+<span class="ln"><span class="d">Plan:</span> <span class="a">9 to add</span>, 0 to change, 0 to destroy.</span></pre>
+      </figure>
+    </div>
+  </section>
+
+  <div class="proof">
+    <div class="wrap">
+      <div><b>5+ years</b><span>Cloud, DevOps and platform engineering</span></div>
+      <div><b>CKA · CKS</b><span>Kubernetes Administrator and Security Specialist</span></div>
+      <div><b>GitLab Certified</b><span>GitLab CI/CD since 2020</span></div>
+      <div><b>100% remote</b><span>CET time zone · English and French</span></div>
+    </div>
+  </div>
+
+  <section class="block" id="services">
+    <div class="wrap">
+      <div class="head">
+        <span class="label">Services</span>
+        <h2>What I can do for your team</h2>
+        <p>Pick one area or hand me the whole platform. Every engagement ends with code in your repository and documentation your team can run without me.</p>
+      </div>
+      <div class="services">
+        <div class="svc"><span class="label">GitLab</span><h3>GitLab CI/CD</h3><p>Fast, readable pipelines from commit to production.</p><ul><li>Multi-stage .gitlab-ci.yml design</li><li>Reusable templates with include and extends</li><li>Merge request pipelines and environments</li></ul></div>
+        <div class="svc"><span class="label">GitLab</span><h3>Runners and GitLab platform</h3><p>The build infrastructure behind your pipelines.</p><ul><li>Self-hosted runners on Kubernetes or VMs</li><li>Container registry and caching</li><li>Migration from Jenkins or Azure DevOps</li></ul></div>
+        <div class="svc"><span class="label">DevSecOps</span><h3>Security in the pipeline</h3><p>Catch vulnerabilities and bad code before they ship.</p><ul><li>SonarQube quality gates</li><li>Trivy and Aqua image scanning</li><li>Findings tracked in DefectDojo</li></ul></div>
+        <div class="svc"><span class="label">CI/CD</span><h3>Azure DevOps and Jenkins</h3><p>Same standards on the tools you already use.</p><ul><li>Azure Pipelines for infra and apps</li><li>High-availability Jenkins</li><li>Fixing slow or flaky pipelines</li></ul></div>
+        <div class="svc"><span class="label">Containers</span><h3>Docker and Helm</h3><p>Small, secure images and repeatable releases.</p><ul><li>Containerising existing applications</li><li>Docker image optimisation</li><li>Helm charts for every environment</li></ul></div>
+        <div class="svc"><span class="label">Kubernetes</span><h3>AKS and EKS platforms</h3><p>Production clusters that are secure, observable and easy to operate.</p><ul><li>Multi-cluster and HA design</li><li>Operators, service mesh (mTLS)</li><li>Backup and migration with Velero</li></ul></div>
+        <div class="svc"><span class="label">Infrastructure as Code</span><h3>Terraform and Bicep</h3><p>Repeatable environments from reusable, reviewed modules.</p><ul><li>Module libraries for dev, test and prod</li><li>Terraform plan and apply in CI</li><li>Ansible for configuration</li></ul></div>
+        <div class="svc"><span class="label">Migration</span><h3>Move to Azure</h3><p>Turn on-premises or client-installed software into a cloud platform.</p><ul><li>Assessment and target architecture</li><li>VNets, Firewall, Private Endpoints</li><li>Keycloak SSO, Key Vault secrets</li></ul></div>
+        <div class="svc"><span class="label">Observability</span><h3>Monitoring and SRE</h3><p>Know about problems before your users do.</p><ul><li>Prometheus, Grafana, OpenTelemetry</li><li>Azure Monitor alerts and action groups</li><li>L3 support and runbooks</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="pipeline" style="padding-top:0">
+    <div class="wrap">
+      <div class="head">
+        <span class="label">DevOps</span>
+        <h2>The GitLab pipeline I set up for you</h2>
+        <p>A typical delivery pipeline, adapted to your stack. Every stage runs automatically on each merge request, and nothing reaches production without passing the gates.</p>
+      </div>
+      <ol class="pipeline">
+        <li><b>build</b><span>Docker image built and pushed to the GitLab registry</span></li>
+        <li><b>test</b><span>Unit and integration tests, with coverage reported in the merge request</span></li>
+        <li class="gate"><b>quality</b><span>SonarQube quality gate blocks the merge on new issues</span></li>
+        <li class="gate"><b>security</b><span>Trivy or Aqua image scan, results tracked in DefectDojo</span></li>
+        <li><b>infra</b><span>Terraform plan on every MR, apply after approval</span></li>
+        <li><b>deploy:staging</b><span>Helm release to a staging environment on Kubernetes</span></li>
+        <li class="gate"><b>approve</b><span>Manual approval with a protected environment</span></li>
+        <li><b>deploy:prod</b><span>Same Helm chart to production, with quick rollback</span></li>
+      </ol>
+      <div class="gitlab-points">
+        <div><h3>Reusable by every team</h3><p>Shared CI templates with include and extends, so new projects get the full pipeline in a few lines.</p></div>
+        <div><h3>Your own runners</h3><p>Self-hosted GitLab runners on Kubernetes or VMs, sized for your workloads and kept under your control.</p></div>
+        <div><h3>Secrets kept safe</h3><p>Protected and masked CI variables, or secrets pulled from Azure Key Vault at deploy time.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="work" style="padding-top:0">
+    <div class="wrap">
+      <div class="head">
+        <span class="label">Case studies</span>
+        <h2>Recent work</h2>
+        <p>Real projects from my consulting and employment history. Client details are kept to what is public.</p>
+      </div>
+      <div class="cases">
+
+        <article class="case featured">
+          <aside>
+            <span class="tag">Featured · 2026</span>
+            <dl>
+              <dt>Client</dt><dd>Medicim NV, Mechelen (Belgium)</dd>
+              <dt>Role</dt><dd>Azure Cloud Engineer, consultant</dd>
+              <dt>Type</dt><dd>On-premises to cloud migration</dd>
+            </dl>
+          </aside>
+          <div class="body">
+            <h3>Migrating a client-installed product to a cloud platform on Azure</h3>
+            <p>DTXCore was installed separately at every client site. The goal was one secure, centrally run platform on Azure that the vendor operates for all clients.</p>
+            <ul>
+              <li>Designed and provisioned the Azure environment: AKS, VNet, ACR, Key Vault and Azure Monitor action groups.</li>
+              <li>Containerised the application components and made them run reliably on AKS.</li>
+              <li>Ran the database on AKS with a Kubernetes operator and pulled secrets from Key Vault through an operator.</li>
+              <li>Set up Keycloak for authentication, single sign-on and role-based access.</li>
+              <li>Enforced mutual TLS between services with a service mesh, and TLS on all external traffic.</li>
+              <li>Automated infrastructure setup and installation with Azure Pipelines; monitoring with Prometheus and Grafana.</li>
+            </ul>
+            <div class="chips"><span class="chip">AKS</span><span class="chip">ACR</span><span class="chip">Key Vault</span><span class="chip">Keycloak</span><span class="chip">Service mesh mTLS</span><span class="chip">Azure Pipelines</span><span class="chip">Prometheus</span><span class="chip">Grafana</span></div>
+          </div>
+          <figure class="diagram" style="margin:0">
+            <svg viewBox="0 0 960 300" role="img" aria-label="Architecture: users connect over TLS to an ingress in a virtual network; inside AKS a service mesh with mTLS links the application, Keycloak and the database operator; AKS uses ACR, Key Vault and Azure Monitor.">
+              <style>
+                .bx{fill:var(--surface);stroke:var(--line);stroke-width:1.5}
+                .zone{fill:none;stroke:var(--muted);stroke-dasharray:5 5;stroke-width:1.2}
+                .mesh{fill:var(--accent-soft);stroke:var(--accent);stroke-width:1.5}
+                .t{fill:var(--ink);font:600 14px var(--body)}
+                .s{fill:var(--muted);font:12px var(--mono)}
+                .ln{stroke:var(--muted);stroke-width:1.5;fill:none}
+                .ac{stroke:var(--accent);stroke-width:2;fill:none}
+                .ah{fill:var(--muted)} .aha{fill:var(--accent)}
+              </style>
+              <defs>
+                <marker id="m1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="ah" d="M0,0 L10,5 L0,10z"/></marker>
+                <marker id="m2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="aha" d="M0,0 L10,5 L0,10z"/></marker>
+              </defs>
+              <rect class="bx" x="10" y="115" width="120" height="60" rx="8"/>
+              <text class="t" x="70" y="141" text-anchor="middle">Clients</text>
+              <text class="s" x="70" y="160" text-anchor="middle">browser / API</text>
+              <path class="ac" d="M130 145 H196" marker-end="url(#m2)"/>
+              <text class="s" x="163" y="135" text-anchor="middle">TLS</text>
+
+              <rect class="zone" x="200" y="20" width="560" height="260" rx="12"/>
+              <text class="s" x="216" y="42">Azure VNet</text>
+              <rect class="bx" x="220" y="115" width="120" height="60" rx="8"/>
+              <text class="t" x="280" y="141" text-anchor="middle">Ingress</text>
+              <text class="s" x="280" y="160" text-anchor="middle">TLS termination</text>
+              <path class="ln" d="M340 145 H376" marker-end="url(#m1)"/>
+
+              <rect class="mesh" x="380" y="55" width="360" height="205" rx="10"/>
+              <text class="s" x="396" y="77">AKS · service mesh (mTLS)</text>
+              <rect class="bx" x="400" y="95" width="150" height="54" rx="8"/>
+              <text class="t" x="475" y="119" text-anchor="middle">DTXCore apps</text>
+              <text class="s" x="475" y="137" text-anchor="middle">containers</text>
+              <rect class="bx" x="570" y="95" width="150" height="54" rx="8"/>
+              <text class="t" x="645" y="119" text-anchor="middle">Keycloak</text>
+              <text class="s" x="645" y="137" text-anchor="middle">SSO · RBAC</text>
+              <rect class="bx" x="400" y="180" width="150" height="54" rx="8"/>
+              <text class="t" x="475" y="204" text-anchor="middle">Database</text>
+              <text class="s" x="475" y="222" text-anchor="middle">operator-managed</text>
+              <rect class="bx" x="570" y="180" width="150" height="54" rx="8"/>
+              <text class="t" x="645" y="204" text-anchor="middle">Prometheus</text>
+              <text class="s" x="645" y="222" text-anchor="middle">+ Grafana</text>
+              <path class="ac" d="M550 122 H566" marker-end="url(#m2)"/>
+              <path class="ac" d="M475 149 V176" marker-end="url(#m2)"/>
+
+              <rect class="bx" x="800" y="40" width="150" height="54" rx="8"/>
+              <text class="t" x="875" y="64" text-anchor="middle">ACR</text>
+              <text class="s" x="875" y="82" text-anchor="middle">images</text>
+              <rect class="bx" x="800" y="118" width="150" height="54" rx="8"/>
+              <text class="t" x="875" y="142" text-anchor="middle">Key Vault</text>
+              <text class="s" x="875" y="160" text-anchor="middle">secrets operator</text>
+              <rect class="bx" x="800" y="196" width="150" height="54" rx="8"/>
+              <text class="t" x="875" y="220" text-anchor="middle">Azure Monitor</text>
+              <text class="s" x="875" y="238" text-anchor="middle">action groups</text>
+              <path class="ln" d="M740 100 L796 70" marker-end="url(#m1)"/>
+              <path class="ln" d="M740 145 H796" marker-end="url(#m1)"/>
+              <path class="ln" d="M740 205 L796 222" marker-end="url(#m1)"/>
+            </svg>
+            <figcaption>Simplified target architecture. Infrastructure and installation are deployed by Azure Pipelines.</figcaption>
+          </figure>
+        </article>
+
+        <article class="case">
+          <aside>
+            <span class="tag">2023 – 2025</span>
+            <dl>
+              <dt>Client</dt><dd>Orange Business</dd>
+              <dt>Role</dt><dd>DevOps / Cloud Engineer</dd>
+              <dt>Type</dt><dd>Azure platform and networking</dd>
+            </dl>
+          </aside>
+          <div class="body">
+            <h3>DevSecOps pipelines and a secure multi-cluster AKS platform</h3>
+            <p>Several teams needed isolated, highly available Kubernetes environments on Azure, connected to on-premises networks and delivered through secure pipelines.</p>
+            <ul>
+              <li>Built reusable Terraform modules (plus Bicep) for multi-cluster AKS deployments.</li>
+              <li>Controlled traffic between VNets, subnets, AKS and on-premises with UDRs, Azure Firewall and NSGs.</li>
+              <li>Exposed workloads through Azure Load Balancer and Application Gateway for high availability.</li>
+              <li>Designed and maintained GitLab CI and Azure DevOps pipelines automating build, test, security scanning and deployment.</li>
+              <li>Added SonarQube, Trivy, Aqua and DefectDojo to the pipelines to enforce code quality and vulnerability checks.</li>
+              <li>Migrated Kubernetes environments with Velero and provided L3 production support.</li>
+            </ul>
+            <div class="chips"><span class="chip">GitLab CI</span><span class="chip">Azure DevOps</span><span class="chip">SonarQube</span><span class="chip">Trivy</span><span class="chip">AKS</span><span class="chip">Terraform</span><span class="chip">Bicep</span><span class="chip">Azure Firewall</span><span class="chip">Velero</span></div>
+          </div>
+        </article>
+
+        <article class="case">
+          <aside>
+            <span class="tag">2025 – 2026</span>
+            <dl>
+              <dt>Client</dt><dd>EUROCONTROL, Brussels</dd>
+              <dt>Role</dt><dd>DevOps / Cloud Engineer</dd>
+              <dt>Type</dt><dd>Platform operations</dd>
+            </dl>
+          </aside>
+          <div class="body">
+            <h3>High-availability CI/CD and Kubernetes operations</h3>
+            <p>Build pipelines and clusters supporting many projects had to stay up and predictable.</p>
+            <ul>
+              <li>Helped roll out an active/passive high-availability Jenkins platform.</li>
+              <li>Operated Kubernetes clusters day to day: monitoring, incidents and stability.</li>
+              <li>Ran Azure networking for Kubernetes workloads: VNet integration, Private Endpoints, controlled ingress and egress.</li>
+            </ul>
+            <div class="chips"><span class="chip">Jenkins HA</span><span class="chip">Kubernetes</span><span class="chip">Private Endpoints</span><span class="chip">Azure networking</span></div>
+          </div>
+        </article>
+
+        <article class="case">
+          <aside>
+            <span class="tag">2020 – 2021 · Freelance</span>
+            <dl>
+              <dt>Client</dt><dd>Proxisoft</dd>
+              <dt>Role</dt><dd>DevOps Engineer</dd>
+              <dt>Type</dt><dd>Greenfield platform on AWS</dd>
+            </dl>
+          </aside>
+          <div class="body">
+            <h3>Car-rental management platform on AWS EKS</h3>
+            <p>A new product needed scalable hosting and continuous delivery from the start.</p>
+            <ul>
+              <li>Designed the AWS platform on EKS, RDS and VPC with modular Terraform.</li>
+              <li>Built GitLab CI pipelines for continuous deployment of microservices to EKS.</li>
+              <li>Applied least-privilege IAM and security group policies.</li>
+            </ul>
+            <div class="chips"><span class="chip">AWS EKS</span><span class="chip">RDS</span><span class="chip">Terraform</span><span class="chip">GitLab CI</span><span class="chip">IAM</span></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="process" style="padding-top:0">
+    <div class="wrap">
+      <div class="head">
+        <span class="label">How I work</span>
+        <h2>From first call to handover</h2>
+      </div>
+      <div class="steps">
+        <div class="step"><h3>Assess</h3><p>A short call and a review of your current setup. You get a written scope, risks and estimate.</p></div>
+        <div class="step"><h3>Design</h3><p>Target architecture and security model, agreed with you before anything is built.</p></div>
+        <div class="step"><h3>Build and automate</h3><p>Everything as code in your repository, delivered in small, reviewable steps with regular updates.</p></div>
+        <div class="step"><h3>Hand over</h3><p>Documentation, runbooks and a walkthrough with your team. Ongoing support if you need it.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="about" style="padding-top:0">
+    <div class="wrap two">
+      <div>
+        <div class="head"><span class="label">Toolbox</span><h2>Tech stack</h2></div>
+        <div class="stack">
+          <div><span class="label">GitLab</span><div class="chips"><span class="chip">GitLab CI/CD</span><span class="chip">GitLab Runner</span><span class="chip">CI templates</span><span class="chip">Container Registry</span><span class="chip">Environments</span><span class="chip">MR pipelines</span></div></div>
+          <div><span class="label">CI/CD &amp; DevSecOps</span><div class="chips"><span class="chip">Azure DevOps</span><span class="chip">Jenkins</span><span class="chip">SonarQube</span><span class="chip">Trivy</span><span class="chip">Aqua</span><span class="chip">DefectDojo</span></div></div>
+          <div><span class="label">Azure</span><div class="chips"><span class="chip">AKS</span><span class="chip">VNet</span><span class="chip">UDR</span><span class="chip">Private Endpoints</span><span class="chip">Azure Firewall</span><span class="chip">NSG</span><span class="chip">App Gateway</span><span class="chip">Key Vault</span><span class="chip">ACR</span><span class="chip">Azure Monitor</span></div></div>
+          <div><span class="label">AWS &amp; OCI</span><div class="chips"><span class="chip">EKS</span><span class="chip">RDS</span><span class="chip">VPC</span><span class="chip">IAM</span><span class="chip">Oracle Cloud</span></div></div>
+          <div><span class="label">Kubernetes</span><div class="chips"><span class="chip">Helm</span><span class="chip">Operators</span><span class="chip">Service mesh</span><span class="chip">Ingress NGINX</span><span class="chip">Velero</span><span class="chip">Keycloak</span><span class="chip">Docker</span></div></div>
+          <div><span class="label">IaC</span><div class="chips"><span class="chip">Terraform</span><span class="chip">Bicep</span><span class="chip">Ansible</span></div></div>
+          <div><span class="label">Observability</span><div class="chips"><span class="chip">Prometheus</span><span class="chip">Grafana</span><span class="chip">Alertmanager</span><span class="chip">OpenTelemetry</span><span class="chip">OpenSearch</span></div></div>
+        </div>
+      </div>
+      <div>
+        <div class="head"><span class="label">Experience</span><h2>Where I've worked</h2></div>
+        <ol class="timeline">
+          <li><time>2026 – now</time><div><b>Medicim NV</b><span>Azure Cloud Engineer, consultant</span></div></li>
+          <li><time>2025 – 2026</time><div><b>EUROCONTROL</b><span>DevOps / Cloud Engineer</span></div></li>
+          <li><time>2023 – 2025</time><div><b>Orange Business</b><span>DevOps / Cloud Engineer</span></div></li>
+          <li><time>2022 – 2023</time><div><b>Oracle</b><span>DevOps Engineer</span></div></li>
+          <li><time>2020 – 2021</time><div><b>Proxisoft</b><span>DevOps Engineer, freelance</span></div></li>
+        </ol>
+        <div class="certs">
+          <div class="cert"><span class="badge">CKS</span><div><b>Certified Kubernetes Security Specialist</b><span>The Linux Foundation · 2024</span></div></div>
+          <div class="cert"><span class="badge">CKA</span><div><b>Certified Kubernetes Administrator</b><span>The Linux Foundation · 2023</span></div></div>
+          <div class="cert"><span class="badge">GL</span><div><b>GitLab Certified Associate</b><span>GitLab · 2021</span></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div>
+      <span class="label" style="color:#7D8AA0">Contact</span>
+      <h2 style="margin-top:.6rem">Need pipelines, a platform or a cloud migration?</h2>
+      <p>Tell me what you run today and where you want to be. I work fully remote with teams in Europe and beyond, and reply within one working day with questions or a first plan.</p>
+    </div>
+    <div class="card">
+      <div class="row"><span class="label">Email</span><div><span class="val" id="email">aja.oth@gmail.com</span><button class="copy" id="copy-email" type="button">Copy</button></div></div>
+      <div class="row"><span class="label">Upwork</span><div><span class="val placeholder">Your Upwork profile link goes here</span></div></div>
+      <div class="row"><span class="label">LinkedIn</span><div><span class="val placeholder">Your LinkedIn URL goes here</span></div></div>
+      <div class="row"><span class="label">Based in</span><div><span class="val">100% remote · based in Brussels (CET)</span></div></div>
+    </div>
+  </div>
+</section>
+<footer><div class="wrap"><span>© 2026 Othmane Aja</span><span>DevOps &amp; Cloud Engineer · GitLab · Kubernetes · Azure · AWS</span></div></footer>
+
+<script>
+document.getElementById('copy-email').addEventListener('click', e => {
+  const b = e.currentTarget, t = document.getElementById('email').textContent;
+  const done = () => { b.textContent = 'Copied'; setTimeout(() => b.textContent = 'Copy', 1600); };
+  const fallback = () => { const r = document.createRange(); r.selectNodeContents(document.getElementById('email')); const s = getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent = 'Selected'; };
+  try { navigator.clipboard.writeText(t).then(done, fallback); } catch (_) { fallback(); }
+});
+const tabs = [['tab-ci','pane-ci'],['tab-tf','pane-tf']];
+tabs.forEach(([t]) => document.getElementById(t).addEventListener('click', () => {
+  tabs.forEach(([o, p]) => { const on = o === t; document.getElementById(o).setAttribute('aria-selected', on); document.getElementById(p).hidden = !on; });
+}));
+document.querySelectorAll('.plan .ln').forEach((el, i) => el.style.animationDelay = (i * 70) + 'ms');
+</script>
